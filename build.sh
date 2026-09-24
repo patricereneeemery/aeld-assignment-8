@@ -10,7 +10,10 @@ git submodule update
 #source poky/oe-init-build-env
 source poky/oe-init-build-env build
 
-CONFLINE="MACHINE = \"qemuarm64\""
+# CONFLINE="MACHINE = \"qemuarm64\""   # old ECEN default
+CONFLINE="MACHINE = \"qemux86-64\""    # AESD required architecture
+
+
 
 cat conf/local.conf | grep "${CONFLINE}" > /dev/null
 local_conf_info=$?

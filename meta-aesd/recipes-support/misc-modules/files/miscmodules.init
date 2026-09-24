@@ -1,0 +1,9 @@
+#!/bin/sh
+case "$1" in
+    start)
+        echo "misc-modules init script starting"
+        ;;
+    stop)
+        echo "misc-modules init script stopping"
+        ;;
+esac
