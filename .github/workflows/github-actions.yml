@@ -6,6 +6,7 @@ on:
         branches:
             - '*'
 jobs:
+<<<<<<< HEAD
       full-test:
         runs-on: self-hosted
         steps:
@@ -26,10 +27,28 @@ jobs:
                  cuaesd/aesd-autotest:24-assignment6-yocto \
                  --workdir=${GITHUB_WORKSPACE} \
                  ./build.sh
+=======
+    full-test:
+        container: cuaesd/aesd-autotest:24-assignment7
+        runs-on: self-hosted
+        timeout-minutes: 120
+        steps:
+          - uses: actions/checkout@v2
+          - name: Checkout submodules
+            run: git submodule update --init --recursive
+          - uses: webfactory/ssh-agent@v0.5.3
+            with:
+                ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          - name: Run full test
+            env:
+              GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+            run: ./full-test.sh
+>>>>>>> 33dc89a43bb3c3ae27fd07beae865fe31ad1fa3b
           - name: Cleanup
             if: always()
             run: |
               ssh-add -D
+<<<<<<< HEAD
           - name: Run full test
             timeout-minutes: 15
             run: |
@@ -38,3 +57,5 @@ jobs:
                  cuaesd/aesd-autotest:assignment6-yocto \
                  --workdir=${GITHUB_WORKSPACE} \
                  ./full-test.sh
+=======
+>>>>>>> 33dc89a43bb3c3ae27fd07beae865fe31ad1fa3b

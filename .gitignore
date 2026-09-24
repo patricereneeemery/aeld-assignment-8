@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 build
 .vscode
 valgrind-out.txt
 test.sh.log
+=======
+*.o
+build/
+.vscode/
+test.sh.log
+aesdsocket
+server/aesdsocket
+server/valgrind-out.txt
+>>>>>>> 33dc89a43bb3c3ae27fd07beae865fe31ad1fa3b

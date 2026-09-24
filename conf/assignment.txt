@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 assignment7-yocto
+=======
+assignment8-buildroot
+>>>>>>> 33dc89a43bb3c3ae27fd07beae865fe31ad1fa3b
