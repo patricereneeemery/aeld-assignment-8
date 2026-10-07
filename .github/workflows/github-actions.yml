@@ -9,25 +9,8 @@ on:
 jobs:
   full-test:
     runs-on: self-hosted
-    container: cuaesd/aesd-autotest:24-assignment7
-    timeout-minutes: 120
-
     steps:
       - uses: actions/checkout@v3
         with:
           clean: false
-          submodules: recursive
-
-      - uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Run full test
-        env:
-          GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
-        run: ./full-test.sh
-
-      - name: Cleanup
-        if: always()
-        run: ssh-add -D
-
+          submodules: 'recursive'
