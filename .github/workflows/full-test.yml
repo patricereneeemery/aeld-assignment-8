@@ -1,11 +1,11 @@
-name: assignment-test
+name: assignment-8-full-test
 
 on:
   push:
     branches:
       - main
     tags:
-      - assignment8
+      - assignment-8-complete
 
 jobs:
   full-test:
