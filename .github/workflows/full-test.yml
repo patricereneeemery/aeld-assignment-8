@@ -1,0 +1,35 @@
+name: assignment-test
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - assignment8
+
+jobs:
+  full-test:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          clean: false
+          submodules: recursive
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Run full-test build
+        timeout-minutes: 600
+        run: |
+          docker run --rm \
+            -v $SSH_AUTH_SOCK:/ssh-agent -e SSH_AUTH_SOCK=/ssh-agent \
+            -e GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" \
+            -v ${GITHUB_WORKSPACE}:${GITHUB_WORKSPACE} \
+            -w ${GITHUB_WORKSPACE} \
+            aesd-build \
+            /bin/bash -c "source poky/oe-init-build-env && bitbake full-test"
